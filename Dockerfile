@@ -10,16 +10,7 @@ RUN \
    && rm -f go1.14.2.linux-amd64.tar.gz \
    && export PATH=$PATH:/usr/local/go/bin \
    && export GO111MODULE=on \
-   && go get github.com/golang/protobuf/protoc-gen-go \
-   && export GO111MODULE=on \
-   && go get google.golang.org/grpc@v1.28.1 \
-   && go get github.com/golang/protobuf
-
-#export GO111MODULE=on
-#go get google.golang.org/grpc@v1.28.1
-
-#go get github.com/golang/protobuf
-
+   && go get github.com/golang/protobuf/protoc-gen-go
 
 
 COPY 'libs/protoc-3.11.4-linux-x86_64/bin' ./bin

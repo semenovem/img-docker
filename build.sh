@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t gen_proto .
+source ./sh/constants.sh
+
+docker build -t "$NAME_DOCKER_IMAGE" .

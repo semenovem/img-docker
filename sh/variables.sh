@@ -20,7 +20,7 @@ if ! [ -d "$PATH_PROTO_FILE" ]; then
 fi
 
 if ! [ -d "$PATH_OUT" ]; then
-    ERROR_MSG+="Нет директории для выхода компиляции"
+    ERROR_MSG+="Нет директории для результата компиляции"
 fi
 
 if [ "$ERROR_MSG" ]; then

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_package = "ru.vtb.grpc.mbank.adapter";
+option java_multiple_files = true;
+option py_generic_services = true;
+option go_package = "vtb.ru/afsc/payment";
+
+
+
+message Account {
+  string bic = 1;
+  string kpp = 2;
+  string settlement_account = 3;
+  string correspondent_account = 4;
+}
+
+message AccountRequest {
+  string id = 1;
+  string inn = 2;
+  string kpp = 3;
+  string name = 4;
+  Account account = 5;
+}
+
+
+message AccountReply {
+  Result result = 1;
+  string message = 2;
+
+  enum Result {
+    OK = 0;
+    ORG_NOT_FOUND = 1;
+    // .....
+  }
+}
+
+service Registry {
+  rpc GetAccount(AccountRequest) returns (AccountReply);
+
+  rpc DeleteAccount(AccountRequest) returns (AccountReply);
+}

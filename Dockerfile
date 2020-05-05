@@ -10,8 +10,10 @@ RUN \
    && rm -f go1.14.2.linux-amd64.tar.gz \
    && export PATH=$PATH:/usr/local/go/bin \
    && export GO111MODULE=on \
-   && go get github.com/golang/protobuf/protoc-gen-go
-
+   && go get github.com/golang/protobuf/protoc-gen-go \
+   && export GO111MODULE=on \
+   && go get google.golang.org/grpc@v1.28.1 \
+   && go get github.com/golang/protobuf
 
 #export GO111MODULE=on
 #go get google.golang.org/grpc@v1.28.1
@@ -25,4 +27,4 @@ COPY libs/protoc-plugins/grpc_python_plugin ./bin
 COPY sh ./sh/
 
 
-#CMD bash sh/generate-all.sh
+CMD bash sh/generate-all.sh

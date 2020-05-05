@@ -9,6 +9,7 @@ PATH_PLUGIN_PYTHON=$(which grpc_python_plugin)
 
 if ! [ -d "$PATH_OUT_PYTHON" ]; then
     mkdir -p "$PATH_OUT_PYTHON"
+    chmod -R 777 "$PATH_OUT_PYTHON"
 fi
 
 
@@ -34,6 +35,8 @@ else
        --grpc_python_out="$PATH_OUT_PYTHON" \
        --plugin=protoc-gen-grpc_python="$PATH_PLUGIN_PYTHON" \
          registry-service.proto
+
+    chmod -R 777 "$PATH_OUT_PYTHON"
 fi
 
 

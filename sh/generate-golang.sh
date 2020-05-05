@@ -14,6 +14,7 @@ PATH_OUT_GOLANG="$PATH_OUT/golang"
 
 if ! [ -d "$PATH_OUT_GOLANG" ]; then
     mkdir -p "$PATH_OUT_GOLANG"
+    chmod -R 777 "$PATH_OUT_GOLANG"
 fi
 
 
@@ -34,6 +35,8 @@ else
        --proto_path="$PATH_PROTO_FILE" \
        --go_out=plugins=grpc:"$PATH_OUT_GOLANG" \
         registry-service.proto
+
+    chmod -R 777 "$PATH_OUT_GOLANG"
 fi
 
 unset DIR_SH PATH_OUT_GOLANG ERROR_MSG

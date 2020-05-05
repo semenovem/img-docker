@@ -9,6 +9,7 @@ PATH_OUT="/usr/app/$NAME_DIR_PKG_HOST_PC/$VERSION"
 
 if ! [ -d "$PATH_OUT" ]; then
     mkdir -p "$PATH_OUT"
+    chmod -R 777 "$PATH_OUT"
 fi
 
 # проверки

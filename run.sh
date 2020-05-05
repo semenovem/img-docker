@@ -2,10 +2,9 @@
 
 source ./sh/constants.sh
 
-if ! [ -d "pkg" ]; then
-    make -p "pkg"
+if ! [ -d pkg ]; then
+    mkdir -p pkg
 fi
-
 
 
 docker run --rm \

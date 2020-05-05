@@ -2,6 +2,12 @@
 
 source ./sh/constants.sh
 
+if ! [ -d "pkg" ]; then
+    make -p "pkg"
+fi
+
+
+
 docker run --rm \
 -v "${PWD}/proto-files:/usr/app/$NAME_DIR_PROTO_FILES" \
 -v "${PWD}/pkg:/usr/app/$NAME_DIR_PKG_HOST_PC" \

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR_SH=$(dirname $(realpath "$0"))
+source "$DIR_SH/current-version.sh"
 source "$DIR_SH/variables.sh"
 
 
@@ -23,20 +24,31 @@ if ! [ -f "$PATH_PLUGIN_PYTHON" ]; then
 fi
 
 
-
 if [ "$ERROR_MSG" ]; then
     echo "Ошибка! Нельзя выполнить генерацию кода для python"
     echo -e "$ERROR_MSG"
 else
     echo "Генерация кода для python"
+
+    PATH_OUT_TMP=$(pwd)/tmp
+    mkdir "$PATH_OUT_TMP"
+
     protoc \
        --proto_path="$PATH_PROTO_FILE" \
-       --python_out="$PATH_OUT_PYTHON" \
-       --grpc_python_out="$PATH_OUT_PYTHON" \
+       --python_out="$PATH_OUT_TMP" \
+       --grpc_python_out="$PATH_OUT_TMP" \
        --plugin=protoc-gen-grpc_python="$PATH_PLUGIN_PYTHON" \
          registry-service.proto
 
+    cd "$PATH_OUT_TMP"
+    tar -czvf "$PATH_OUT_PYTHON/python-$VERSION.tar.gz" *
+    cd -
+
+    cp -R "$PATH_OUT_TMP"/* "$PATH_OUT_PYTHON"/
+
     chmod -R 777 "$PATH_OUT_PYTHON"
+
+    rm -rf "$PATH_OUT_TMP"
 fi
 
 

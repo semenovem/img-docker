@@ -40,9 +40,9 @@ else
        --plugin=protoc-gen-grpc_python="$PATH_PLUGIN_PYTHON" \
          registry-service.proto
 
-    cd "$PATH_OUT_TMP"
-    tar -czvf "$PATH_OUT_PYTHON/python-$VERSION.tar.gz" *
-    cd -
+    cd "$PATH_OUT_TMP" > /dev/null
+    tar -czf "$PATH_OUT_PYTHON/python-$VERSION.tar.gz" *
+    cd - > /dev/null
 
     cp -R "$PATH_OUT_TMP"/* "$PATH_OUT_PYTHON"/
 
